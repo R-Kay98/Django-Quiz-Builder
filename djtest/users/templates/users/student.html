@@ -1,0 +1,9 @@
+{% extends "testbuilder/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<form method="GET" action="{% url 'start_quiz' %}">
+		<p>Enter the Quiz ID:</p> <input id = "QID" type="text" name="QID">
+		<input type="hidden" value="" name="student" id="student">
+		<button type="submit">Start Quiz</button>
+	</form>
+{% endblock content %}

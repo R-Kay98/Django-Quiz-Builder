@@ -1,0 +1,35 @@
+{% extends "testbuilder/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<input type="hidden" value="" name="QID" id="QID">
+{% if request.session.student.format == 'MC' %}
+	<form method="POST" action="{% url 'start_quiz' %}">
+		{% csrf_token %}
+		<p>Question: {{ request.session.student.retQuestion }}</p>
+		<ul>
+			{% for choice in request.session.student.retChoices %}
+				{% for answer in request.session.student.retTruths %}
+					{% if forloop.counter0 == forloop.parentloop.counter0 %}
+						<li>{{ choice }} <input type="radio" id="Choice" name="Choice" value={{ answer }}></li>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		</ul>
+		<button type="submit">Submit Answer</button>
+	</form>
+{% elif request.session.student.format == 'SA' %}
+	<form method="POST" action="{% url 'start_quiz' %}">
+		{% csrf_token %}
+		<p>Question: {{ request.session.student.retQuestion }}</p>
+		<input type="text" id="Answer" name="Answer">
+		<button type="submit">Submit Answer</button>
+	</form>
+{% else %}
+	<form method="POST" action="{% url 'start_quiz' %}">
+		{% csrf_token %}
+		<p>Correct Answers: {{ request.session.student.numCorrect }}</p>
+		<p>Total Questions: {{ request.session.student.qNum }}</p>
+		<a href="{% url 'profile' %}">Start New Quiz</a>
+	</form>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "testbuilder/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form method="POST" action="complete/">
+	{% csrf_token %}
+	<input type="hidden" value="{{ passfield }}" name="passfield" id="passfield">
+	<p>Question:</p> <input id = "Question" type="text" name="Question">
+	<br>
+	<br>
+	<p>A:</p> <input id = "A" type="text" name="A">
+	<input type="checkbox" id="answer_A" name="answer_A">
+	<br>
+	<br>
+	<p>B:</p> <input id = "B" type="text" name="B">
+	<input type="checkbox" id="answer_B" name="answer_B">
+	<br>
+	<br>
+	<p>C:</p> <input id = "C" type="text" name="C">
+	<input type="checkbox" id="answer_C" name="answer_C">
+	<br>
+	<br>
+	<p>D:</p> <input id = "D" type="text" name="D">
+	<input type="checkbox" id="answer_D" name="answer_D">
+	<br>
+	<br>
+	<button type="submit">Create Multiple Choice Question</button>
+</form>
+
+{% endblock content %}

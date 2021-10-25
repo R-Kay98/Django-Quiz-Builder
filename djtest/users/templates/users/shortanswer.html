@@ -1,0 +1,17 @@
+{% extends "testbuilder/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form method="POST" action="complete/">
+	{% csrf_token %}
+	<input type="hidden" value="{{ passfield }}" name="passfield" id="passfield">
+	<p>Question:</p> <input id = "Question" type="text" name="Question">
+	<br>
+	<br>
+	<p>Answer:</p> <input id = "Answer" type="text" name="Answer">
+	<br>
+	<br>
+	<button type="submit">Create Short Answer Question</button>
+</form>
+
+{% endblock content %}

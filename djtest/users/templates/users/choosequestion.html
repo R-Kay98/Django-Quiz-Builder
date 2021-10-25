@@ -1,0 +1,33 @@
+{% extends "testbuilder/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if Questions %}
+<h1>Questions</h1>
+<ul>
+	{% for question in Questions %}
+		<li>
+			<a href="{% url 'deletequestion' parameter=question.question %}">
+				Delete Question: {{ question.question }}
+			</a>
+		</li>
+	{% endfor %}
+</ul>
+{% else %}
+	<p>There are no questions</p>
+{% endif %}
+
+<br>
+<br>
+
+<a href="{% url 'multiplechoice' parameter=passfield %}"><button type="submit" >New Multiple Choice Question</button></a>
+<br>
+<br>
+<a href="{% url 'shortanswer' parameter=passfield %}"><button type="submit">New Short Answer Question</button></a>
+<br>
+<br>
+<a href="{% url 'deletequiz' parameter=passfield %}"><button type="submit">Remove Quiz</button></a>
+<br>
+<br>
+<a href="{% url 'profile' %}"><button type="submit">Finished</button></a>
+
+{% endblock content %}
